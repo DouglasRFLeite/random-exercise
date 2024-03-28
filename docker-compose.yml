@@ -1,12 +1,9 @@
-name: random_exercise
-version: "4"
+version: "3.8" # Specify the version here, outside the service definition
 services:
   web:
     build: .
-    command: python3 app.py
-    environment:
-      - DEBUG=True
+    command: python app.py
     ports:
-      - 5000:5000
+      - "5000:5000"
     volumes:
-      - .:/opt/
+      - ./src:/src
