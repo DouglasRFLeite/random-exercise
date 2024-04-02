@@ -15,35 +15,67 @@
             background-color: #333;
         }
 
-        .container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-
 
         h1 {
             color: #f2f2f2;
             padding: 10px;
         }
+
+        #exercise-card {
+            margin: auto;
+            width: min(400px, 80vw);
+            margin-top: 100px;
+        }
+
+   
+
+        #name-and-tags{
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            border-image: fill 0 linear-gradient(#0001, #000);
+            height: 400px;
+        }
+
+        #badge-list {
+            padding: 5px;
+        }
+
+        #badge-list * {
+            margin: 2px;
+        }
+
+        #instruction-container{
+            margin-top: 15px;
+        }
+
+        #exercise-instructions-list{
+            margin-top: 20px;
+        }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="card text-bg-dark">
-            <div class="card-header">
-                <h2>Go Exercise Now!</h1>
-            </div>
-            <img id="exercise-image" class="img-fluid" src="#" alt="Exercise Image">
-            <div class="card-body">
-                <p><strong>Name:</strong> <span id="exercise-name"></span></p>
-                <p><strong>Body Part:</strong> <span id="exercise-body-part"></span></p>
-                <p><strong>Equipment:</strong> <span id="exercise-equipment"></span></p>
-                <p><strong>Target:</strong> <span id="exercise-target"></span></p>
+    <div id="exercise-card" class="card text-bg-dark">
+        
+        <img id="exercise-image" class="card-img-top" src="#" alt="Exercise Image">
+        <div class="card-img-overlay" id="name-and-tags">
+            <h3 class="card-title"><strong><span id="exercise-name"></span></strong></h3>
+            <div id="badge-list">
+                <span class="badge  text-bg-danger" id="exercise-body-part"></span>
+                <span class="badge  text-bg-info" id="exercise-equipment"></span>
+                <span class="badge  text-bg-warning" id="exercise-target"></span>
             </div>
         </div>
+            <div class="card-body" id="instruction-container">
+                <button class="btn btn-secondary" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#exercise-instructions-list" aria-expanded="false" aria-controls="exercise-instructions-list">
+                    Instructions
+                </button>
+                <div class="collapse" id="exercise-instructions-list">
+                    <ul id="exercise-instructions"></ul>
+                </div>
+            </div>
 
         <script>
             function capitalizeFirstLetterOfEachWord(string) {
@@ -82,18 +114,19 @@
                         document.getElementById('exercise-body-part').innerText = capitalizeFirstLetterOfEachWord(data[randomExercise].bodyPart);
                         document.getElementById('exercise-equipment').innerText = capitalizeFirstLetterOfEachWord(data[randomExercise].equipment);
                         document.getElementById('exercise-target').innerText = capitalizeFirstLetterOfEachWord(data[randomExercise].target);
-                        // const secondaryMusclesList = document.getElementById('exercise-secondary-muscles');
-                        // data[randomExercise].secondaryMuscles.forEach(muscle => {
-                        //     const listItem = document.createElement('li');
-                        //     listItem.innerText = muscle;
-                        //     secondaryMusclesList.appendChild(listItem);
-                        // });
-                        // const instructionsList = document.getElementById('exercise-instructions');
-                        // data[randomExercise].instructions.forEach(instruction => {
-                        //     const listItem = document.createElement('li');
-                        //     listItem.innerText = instruction;
-                        //     instructionsList.appendChild(listItem);
-                        // });
+                        const badgeSection = document.getElementById('badge-list');
+                        data[randomExercise].secondaryMuscles.forEach(muscle => {
+                            const badge = document.createElement('span');
+                            badge.classList.add('badge', 'bg-danger-subtle', 'text-danger-emphasis')
+                            badge.innerText = capitalizeFirstLetterOfEachWord(muscle);;
+                            badgeSection.appendChild(badge);
+                        });
+                        const instructionsList = document.getElementById('exercise-instructions');
+                        data[randomExercise].instructions.forEach(instruction => {
+                            const instructionListItem = document.createElement('li');
+                            instructionListItem.innerText = instruction;
+                            instructionsList.appendChild(instructionListItem);
+                        });
                     })
             } catch (error) {
                 console.error(error);
