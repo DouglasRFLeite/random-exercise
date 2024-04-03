@@ -22,19 +22,21 @@
         }
 
         #exercise-card {
-            margin: auto;
             width: min(400px, 80vw);
-            margin-top: 100px;
+            margin: 50px auto;
         }
 
-   
+        #image-and-overlay {
+            height: 500px;
+            background-color: white;
+        }
 
-        #name-and-tags{
+        #name-and-tags {
             display: flex;
             flex-direction: column;
             justify-content: end;
             border-image: fill 0 linear-gradient(#0001, #000);
-            height: 400px;
+            height: 500px;
         }
 
         #badge-list {
@@ -45,11 +47,11 @@
             margin: 2px;
         }
 
-        #instruction-container{
-            margin-top: 15px;
+        #instruction-btn{
+            margin-top: 10px;
         }
 
-        #exercise-instructions-list{
+        #exercise-instructions-list {
             margin-top: 20px;
         }
     </style>
@@ -57,25 +59,35 @@
 
 <body>
     <div id="exercise-card" class="card text-bg-dark">
-        
-        <img id="exercise-image" class="card-img-top" src="#" alt="Exercise Image">
-        <div class="card-img-overlay" id="name-and-tags">
-            <h3 class="card-title"><strong><span id="exercise-name"></span></strong></h3>
-            <div id="badge-list">
-                <span class="badge  text-bg-danger" id="exercise-body-part"></span>
-                <span class="badge  text-bg-info" id="exercise-equipment"></span>
-                <span class="badge  text-bg-warning" id="exercise-target"></span>
-            </div>
-        </div>
-            <div class="card-body" id="instruction-container">
+        <div id="image-and-overlay" class="card-img-top">
+            <img id="exercise-image" class="card-img-top" src="#" alt="Exercise Image">
+            <div class="card-img-overlay" id="name-and-tags">
+                <h3 class="card-title"><strong><span id="exercise-name"></span></strong></h3>
+                <div id="badge-list">
+                    <span class="badge  text-bg-danger" id="exercise-body-part"></span>
+                    <span class="badge  text-bg-info" id="exercise-equipment"></span>
+                    <span class="badge  text-bg-warning" id="exercise-target"></span>
+                </div>
                 <button class="btn btn-secondary" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#exercise-instructions-list" aria-expanded="false" aria-controls="exercise-instructions-list">
+                    data-bs-target="#exercise-instructions-list" aria-expanded="false"
+                    aria-controls="exercise-instructions-list" id="instruction-btn">
                     Instructions
                 </button>
-                <div class="collapse" id="exercise-instructions-list">
-                    <ul id="exercise-instructions"></ul>
-                </div>
             </div>
+        </div>
+        <div class="collapse" id="exercise-instructions-list">
+            <ul id="exercise-instructions"></ul>
+        </div>
+        <!-- <div class="card-body" id="instruction-container">
+            <button class="btn btn-secondary" type="button" data-bs-toggle="collapse"
+                data-bs-target="#exercise-instructions-list" aria-expanded="false"
+                aria-controls="exercise-instructions-list">
+                Instructions
+            </button> -->
+        <!-- <div class="collapse" id="exercise-instructions-list">
+                <ul id="exercise-instructions"></ul>
+            </div> 
+        </div> -->
 
         <script>
             function capitalizeFirstLetterOfEachWord(string) {
