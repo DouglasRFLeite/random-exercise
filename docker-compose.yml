@@ -1,9 +1,16 @@
-version: "3.8" # Specify the version here, outside the service definition
+version: "3.8"
+
 services:
   web:
-    build: .
-    command: python app.py
+    build:
+      context: .
+      dockerfile: Dockerfile
+      tags:
+        - random-exercise:compose
+    environment:
+      RAPIDAPI_KEY: "1a6191428bmshd5ace4b8d86cad3p178e0ejsnb39eb0718b4b"
     ports:
       - "8080:8080"
     volumes:
-      - ./src:/src
+      - .:/src
+    command: gunicorn -b 0.0.0.0:8080 app:app

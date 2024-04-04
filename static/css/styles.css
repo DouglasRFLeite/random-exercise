@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+}
+
+
+h1 {
+    color: #f2f2f2;
+    padding: 10px;
+}
+
+#exercise-card {
+    width: min(400px, 80vw);
+    margin: 50px auto;
+}
+
+#image-and-overlay {
+    height: 500px;
+    background-color: white;
+}
+
+#name-and-tags {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    border-image: fill 0 linear-gradient(#0001, #000);
+    height: 500px;
+}
+
+#badge-list {
+    padding: 5px;
+}
+
+#badge-list * {
+    margin: 2px;
+}
+
+#instruction-btn{
+    margin-top: 10px;
+}
+
+#exercise-instructions-list {
+    margin-top: 20px;
+}
