@@ -34,47 +34,7 @@
         </div>
     </div>
 
-    <script>
-        // Função para capitalizar a primeira letra de cada palavra
-        function capitalizeFirstLetterOfEachWord(string) {
-            // Dividir a string em palavras usando espaço como delimitador
-            const words = string.split(" ");
-
-            // Capitalizar a primeira letra de cada palavra
-            const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
-
-            // Juntar as palavras novamente em uma string
-            const capitalizedString = capitalizedWords.join(" ");
-
-            return capitalizedString;
-        }
-
-        // Renderizar os dados recebidos da API
-        var exerciseData = {{ data | tojson }};
-        const randomExercise = Math.floor(Math.random() * data.length);
-        const exercise = data[randomExercise];
-
-        document.getElementById('exercise-image').src = exercise.gifUrl;
-        document.getElementById('exercise-name').innerText = capitalizeFirstLetterOfEachWord(exercise.name);
-        document.getElementById('exercise-body-part').innerText = capitalizeFirstLetterOfEachWord(exercise.bodyPart);
-        document.getElementById('exercise-equipment').innerText = capitalizeFirstLetterOfEachWord(exercise.equipment);
-        document.getElementById('exercise-target').innerText = capitalizeFirstLetterOfEachWord(exercise.target);
-
-        const badgeSection = document.getElementById('badge-list');
-        exercise.secondaryMuscles.forEach(muscle => {
-            const badge = document.createElement('span');
-            badge.classList.add('badge', 'bg-danger-subtle', 'text-danger-emphasis')
-            badge.innerText = capitalizeFirstLetterOfEachWord(muscle);
-            badgeSection.appendChild(badge);
-        });
-
-        const instructionsList = document.getElementById('exercise-instructions');
-        exercise.instructions.forEach(instruction => {
-            const instructionListItem = document.createElement('li');
-            instructionListItem.innerText = instruction;
-            instructionsList.appendChild(instructionListItem);
-        });
-    </script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 
 </html>
